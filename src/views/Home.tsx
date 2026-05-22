@@ -8,9 +8,9 @@ import Card from "@/components/Card";
 export default function Home(){
 
     const feature: Features[] = [
-        { title: "Kanban Clarity", desc: "Visualiza el progreso de tus proyectos sin esfuerzo."},
-        { title: "Focus Mode", desc: "Prioriza tareas urgentes al instante."},
-        { title: "Team Synergy", desc: "Colaboración en tiempo real."}
+        { title: "Beneficio 1", desc: "Texto larguisimo 1"},
+        { title: "Beneficio 2", desc: "Texto larguisimo 2"},
+        { title: "Beneficio 3", desc: "Texto larguisimo 3"}
       
     ];
 
