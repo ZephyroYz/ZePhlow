@@ -1,4 +1,4 @@
-import Card from "@/components/Card";
+import FeatureCard from "@/components/FeatureCard";
 
     type Features = {
         title: string;
@@ -21,7 +21,7 @@ export default function Home(){
 
                 <section className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10 w-full">
                 { feature.map((item) => (
-                    <Card
+                    <FeatureCard
                         key={item.title}
                         title={item.title}
                         desc={item.desc}

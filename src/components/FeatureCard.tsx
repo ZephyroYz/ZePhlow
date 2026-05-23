@@ -5,7 +5,7 @@ interface CardProps {
     desc: string;
 }
 
-export default function Card({title, desc}: CardProps){
+export default function FeatureCard({title, desc}: CardProps){
     return(
 
         <div className="border border-black p-4 rounded-md">
