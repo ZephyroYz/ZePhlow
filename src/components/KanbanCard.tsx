@@ -9,7 +9,7 @@ interface KanbanCardProps{
 
 export default function KanbanCards({id, title, desc}: KanbanCardProps){
     return(
-        <div className="border border-black p-4 rounded-md">
+        <div className="border border-black p-4 rounded-md bg-gray-100">
             <h4 className="text-md"> {title} </h4>
             {desc && (
                 <p className="text-sm"> {desc} </p>

@@ -20,7 +20,7 @@ interface ColumnData {
 const initialColumns: ColumnData[] = [
     {
         id: 'id-Pendings',
-        title: '',
+        title: 'Pendings',
         tasks: []
     },
 
@@ -43,10 +43,12 @@ const initialColumns: ColumnData[] = [
 export default function Kanban(){
 const [columns, setColumns] = useState<ColumnData[]>(initialColumns);
 const [isModalOpen, setIsModalOpen] = useState(false);
+const [activeColumnId, setActiveColumnID] = useState<string | null>(null);
+
 
     return(
         <div className="p-8">
-            <div className="flex justify-between items-center">
+            <div className="flex justify-between items-center p-4">
                 <h2>My Pendings</h2>
 
             </div>
