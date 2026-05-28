@@ -9,6 +9,7 @@ export interface TaskData {
     desc?: string;
 }
 
+
 interface ColumnData {
     id: string;
     title: string;
@@ -41,36 +42,38 @@ const initialColumns: ColumnData[] = [
 
 export default function Kanban(){
 const [columns, setColumns] = useState<ColumnData[]>(initialColumns);
-
-const [isModalOpen, setIsModalOpen] = useState(false)
+const [isModalOpen, setIsModalOpen] = useState(false);
 
     return(
         <div className="p-8">
             <div className="flex justify-between items-center">
                 <h2>My Pendings</h2>
 
-                <button onClick={() => setIsModalOpen(true)} className="bg-gray-400 rounded px-4 py-2 ">New Taks</button>
             </div>
             
 
             <div className="flex gap-4 items-start overflow-x-auto pb-4">
 
-                <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-                    <p>que hay</p>
-                
-                </Modal>
+
 
                 {columns.map((column) => (
                     <Column
                         key={column.id}
                         id={column.id}
                         title={column.title}
-                        tasks={column.tasks}
+                        onAddTask={() => setIsModalOpen(true)}
+                        tasks={column.tasks}>
 
-                    />
+                    </Column>
+                    
+
                 ))}
 
             </div>
+
+            <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+                <h3>New Task</h3>
+            </Modal>
 
         </div>
     )
