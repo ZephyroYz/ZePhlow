@@ -12,7 +12,7 @@ export default function KanbanCards({id, title, desc}: KanbanCardProps){
         <div className="border border-gray-300 p-4 rounded-md bg-gray-50 mt-2">
             <h4 className="text-md"> {title} </h4>
             {desc && (
-                <p className="text-sm"> {desc} </p>
+                <p className="text-sm whitespace-pre-wrap"> {desc} </p>
             )}
             
             <span className="text-slate-400 text-xs">
