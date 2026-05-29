@@ -14,18 +14,18 @@ interface ColumnProps{
 
 export default function Column({id, title, onAddTask, tasks}: ColumnProps) {
     return(
-        <div className="w-72 shrink-0 border border-black p-4 rounded-md bg-gray-50">
-            <div className="flex justify-between items-center p-2">
+        <div className="w-72 h-120 shrink-0 border border-gray-600 p-4 rounded-md bg-gray-200 flex flex-col">
+            <div className="flex justify-between items-center p-2 shrink-0">
                 <h3>{title}</h3>
                 <span>{tasks.length}</span>
                 <button 
                     onClick={onAddTask} 
-                    className="bg-gray-200 p-1 rounded cursor-pointer block">
+                    className="bg-teal-600 p-1 rounded cursor-pointer block border border-gray-300 text-white">
                         <Plus size={20}/>
                 </button>
             </div>
             
-            <div>
+            <div className="overflow-y-auto">
                 {tasks.map((task) =>(
                     <KanbanCards 
                         key={task.id}

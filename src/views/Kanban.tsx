@@ -70,7 +70,7 @@ const HandleCreateTask = (title: string, desc: string) => {
 
     return(
         <div className="p-8">
-            <div className="flex justify-between items-center p-4">
+            <div className="flex justify-between items-center pb-4 text-xl">
                 <h2>My Pendings</h2>
 
             </div>
