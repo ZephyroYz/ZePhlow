@@ -1,6 +1,7 @@
 import {useState} from "react"
 import Column from "@/components/Column"
 import Modal from "@/components/Modal";
+import TaskForm from "@/components/TaskForm";
 
 
 export interface TaskData {
@@ -44,7 +45,28 @@ export default function Kanban(){
 const [columns, setColumns] = useState<ColumnData[]>(initialColumns);
 const [isModalOpen, setIsModalOpen] = useState(false);
 const [activeColumnId, setActiveColumnID] = useState<string | null>(null);
+const HandleCreateTask = (title: string, desc: string) => {
+    setIsModalOpen(false);
+    const newTask: TaskData = {
+        id: crypto.randomUUID(),
+        title: title,
+        desc: desc
+    };
 
+    const updateColumns = columns.map((column) => {
+        if (column.id === activeColumnId){
+            return{
+                ...column,
+                tasks: [...column.tasks, newTask]
+            };
+        }
+        return column;
+    });
+
+    setColumns(updateColumns);
+    setIsModalOpen(false)
+
+}
 
     return(
         <div className="p-8">
@@ -63,7 +85,10 @@ const [activeColumnId, setActiveColumnID] = useState<string | null>(null);
                         key={column.id}
                         id={column.id}
                         title={column.title}
-                        onAddTask={() => setIsModalOpen(true)}
+                        onAddTask={() => {
+                            setActiveColumnID(column.id)
+                            setIsModalOpen(true);
+                        }}
                         tasks={column.tasks}>
 
                     </Column>
@@ -73,8 +98,11 @@ const [activeColumnId, setActiveColumnID] = useState<string | null>(null);
 
             </div>
 
-            <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-                <h3>New Task</h3>
+            <Modal 
+                isOpen={isModalOpen} 
+                onClose={() => setIsModalOpen(false)}
+            >
+                <TaskForm onSubmitTask={HandleCreateTask} />
             </Modal>
 
         </div>
