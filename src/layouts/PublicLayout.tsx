@@ -7,7 +7,7 @@ export default function PublicLayout(){
     return(
         <>
         
-        <div className="flex flex-col min-h-screen bg-purple-200">
+        <div className="flex flex-col min-h-screen bg-amber-50">
             <header>
                 <Navbar />
             </header>
