@@ -8,11 +8,13 @@ interface ColumnProps{
     id: string;
     title: string;
     onAddTask: () => void;
+    onDeleteTask: (id: string) => void;
     tasks: TaskData[];
 }
 
 
-export default function Column({id, title, onAddTask, tasks}: ColumnProps) {
+export default function Column({id, title, onAddTask, tasks,onDeleteTask}: ColumnProps) {
+
     return(
         <div className="w-72 h-120 shrink-0 border border-gray-600 p-4 rounded-md bg-gray-200 flex flex-col">
             <div className="flex justify-between items-center p-2 shrink-0">
@@ -32,6 +34,7 @@ export default function Column({id, title, onAddTask, tasks}: ColumnProps) {
                         id={task.id}
                         title={task.title}
                         desc={task.desc}
+                        onDeleteTask={onDeleteTask}
                     />
                 ))}
             </div>

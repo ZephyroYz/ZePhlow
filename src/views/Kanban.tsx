@@ -47,13 +47,15 @@ const [isModalOpen, setIsModalOpen] = useState(false);
 const [activeColumnId, setActiveColumnID] = useState<string | null>(null);
 const HandleCreateTask = (title: string, desc: string) => {
     setIsModalOpen(false);
-    const newTask: TaskData = {
+
+    
+const newTask: TaskData = {
         id: crypto.randomUUID(),
         title: title,
         desc: desc
-    };
+};
 
-    const updateColumns = columns.map((column) => {
+const updateColumns = columns.map((column) => {
         if (column.id === activeColumnId){
             return{
                 ...column,
@@ -67,6 +69,17 @@ const HandleCreateTask = (title: string, desc: string) => {
     setIsModalOpen(false)
 
 }
+
+
+const HandleDeleteTask = (taskId: string) => {
+    const updateColumns = columns.map((column) => ({
+        ...column,
+        tasks: column.tasks.filter((task) => task.id !== taskId),
+    }));
+
+    setColumns(updateColumns);
+}
+
 
     return(
         <div className="p-8">
@@ -89,7 +102,9 @@ const HandleCreateTask = (title: string, desc: string) => {
                             setActiveColumnID(column.id)
                             setIsModalOpen(true);
                         }}
-                        tasks={column.tasks}>
+                        tasks={column.tasks}
+                        onDeleteTask={HandleDeleteTask}
+                    >
 
                     </Column>
                     

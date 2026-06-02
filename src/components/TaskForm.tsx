@@ -1,22 +1,22 @@
 import { useState } from "react"
 
 interface TaskFormProps{
-    onSubmitTask: (title: string, desc: string) => void;
+   onSubmitTask: (title: string, desc: string) => void;
 }
 
 
+export default function TaskForm({onSubmitTask}: TaskFormProps){
 
+const [title, setTitle] = useState("")
+const [desc, setDesc] = useState("")
 
-export default function TaskForm({ onSubmitTask }: TaskFormProps){
-
-const [title, setTitle] = useState("");
-const [desc, setDesc] = useState("");
 const setHandleSubmit = (e: React.SubmitEvent) => {
     e.preventDefault();
     if (!title.trim()) return;
     onSubmitTask(title, desc);
     setTitle("");
     setDesc("");
+    
 
 }
 
