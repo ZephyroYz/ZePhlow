@@ -1,5 +1,5 @@
 import { Ellipsis, Pencil,Trash2, Copy } from "lucide-react";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 
 
 interface KanbanCardProps{
@@ -11,12 +11,31 @@ interface KanbanCardProps{
 
 export default function KanbanCards({id, title, desc, onDeleteTask}: KanbanCardProps){
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const menuRef = useRef<HTMLDivElement>(null);
+    useEffect(() => {
+        const handleClickOutside = (e: MouseEvent) => {
+            if (menuRef.current && !menuRef.current.contains(e.target as Node)){
+                setIsMenuOpen(false);
+            }
+        };
+        
+        if (isMenuOpen){
+            document.addEventListener("mousedown", handleClickOutside);
+        }
+
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    },   [isMenuOpen]);
     
     return(
         <div className="relative border border-gray-400 p-4 rounded-md bg-gray-50 mt-2">
             <div className="flex justify-between items-start gap-2 mb-2">
                 <h4 className="text-base mb-2 flex-1"> {title} </h4>
-                <div className="flex flex-col items-end shrink-0 relative">
+                <div 
+                className="flex flex-col items-end shrink-0 relative"
+                ref={menuRef}
+                >
                    <button 
                     onClick={() => setIsMenuOpen(!isMenuOpen)}
                     className="bg-slate-400 p-1 rounded cursor-pointer block border border-gray-300 text-white"
