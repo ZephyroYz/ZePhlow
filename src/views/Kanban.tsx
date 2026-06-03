@@ -22,7 +22,9 @@ const initialColumns: ColumnData[] = [
     {
         id: 'id-Pendings',
         title: 'Pendings',
-        tasks: []
+        tasks: [
+            {id: 'task-1' , title: 'My first task', desc:'My first description'}
+        ]
     },
 
     {
@@ -34,9 +36,7 @@ const initialColumns: ColumnData[] = [
     {
         id: 'id-Completed',
         title:'Completed' ,
-        tasks: [
-            {id: 'task-1' , title: 'Play Pugbmobile', desc:'Play videogames'}
-        ]
+        tasks: []
     }
 ];
 
