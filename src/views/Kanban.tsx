@@ -102,21 +102,28 @@ const handleTitleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
 
     return(
         <div className="p-8">
-            <div className="flex justify-between items-center pb-4 text-xl">
+            <div className="flex justify-between items-center pb-1 text-xl">
                 {isEditingTitle ? (
-                    <input 
-                        type="text"
-                        value={boardTitle}
-                        onChange={(e) => setBoardTitle(e.target.value)}
-                        onBlur={handleTitleBlur}
-                        onKeyDown={handleTitleKeyDown}
-                        autoFocus
-                        className="bg-transparent border-b-2 border-slate-400 focus:outline-none px-2 py-2 w-64"
-                    />
+                    <div className="flex felx-col relative pb-1">
+                        <input 
+                            type="text"
+                            value={boardTitle}
+                            maxLength={50}
+                            onChange={(e) => setBoardTitle(e.target.value)}
+                            onBlur={handleTitleBlur}
+                            onKeyDown={handleTitleKeyDown}
+                            autoFocus
+                            className="bg-transparent border-b-2 border-slate-400 focus:outline-none px-2 py-2 w-64"
+                        />
+                        <span className="absolute right-2 bottom-1 text-xs font-normal text-gray-400 pointer-events-none">
+                            {boardTitle.length}/50
+                        </span>
+                    </div>
+
                 ) : (
                         <h2
                             onClick={() => setIsEditingTitle(true)}
-                            className="cursor-pointer hover:bg-gray-200 px-2 py-1 rounded transition-colors"
+                            className="cursor-pointer hover:bg-gray-100 px-2 py-1 rounded transition-colors"
                             title="Click to edit"
                         >
                             {boardTitle}
