@@ -27,7 +27,7 @@ export default function Column({id, title, onAddTask, tasks,onDeleteTask}: Colum
                 </button>
             </div>
             
-            <div className="overflow-y-auto">
+            <div className="overflow-y-auto pb-32">
                 {tasks.map((task) =>(
                     <KanbanCards 
                         key={task.id}
