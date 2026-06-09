@@ -7,9 +7,10 @@ interface KanbanCardProps{
     title: string;
     desc?: string;
     onDeleteTask: (id: string) => void;
+    onCopy: () => void;
 }
 
-export default function KanbanCards({id, title, desc, onDeleteTask}: KanbanCardProps){
+export default function KanbanCards({id, title, desc, onDeleteTask, onCopy}: KanbanCardProps){
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const menuRef = useRef<HTMLDivElement>(null);
     useEffect(() => {
@@ -53,6 +54,10 @@ export default function KanbanCards({id, title, desc, onDeleteTask}: KanbanCardP
                             </button>
 
                             <button 
+                            onClick={() => {
+                                onCopy();
+                                setIsMenuOpen(false);
+                            }}
                             className="w-full text-left px-2 py-1 hover:bg-gray-100 rounded cursor-pointer flex justify-between items-center"
                             >
                                 Copy

@@ -97,8 +97,25 @@ const handleTitleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
 };
 
 
+const HandleCopyTask = (columnId: string, taskToCopy: TaskData) => {
+    const duplicatedTask: TaskData= {
+        ...taskToCopy,
+        id: crypto.randomUUID()
+    };
 
 
+    const updateColumns = columns.map((column) => {
+        if (column.id === columnId) {
+            return{
+                ...column,
+                tasks: [...column.tasks, duplicatedTask]
+            };
+        }
+        return column;
+    });
+
+    setColumns(updateColumns);
+    };
 
     return(
         <div className="p-8">
@@ -147,6 +164,7 @@ const handleTitleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
                         }}
                         tasks={column.tasks}
                         onDeleteTask={HandleDeleteTask}
+                        onCopyTask={HandleCopyTask}
                     >
 
                     </Column>
