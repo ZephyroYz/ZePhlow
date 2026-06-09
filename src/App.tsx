@@ -13,7 +13,7 @@ import DashboardLayout from './layouts/DashboardLayout';
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename='/ZePhlow'>
       <Routes>
         <Route element={<PublicLayout/>}>
           <Route path="/" element={<Home />} />
