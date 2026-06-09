@@ -10,11 +10,12 @@ interface ColumnProps{
     onAddTask: () => void;
     onDeleteTask: (id: string) => void;
     onCopyTask: (columnId: string, taskToCopy: TaskData) => void;
+    onUpdateTask: (columnId: string, taskId: string, newTitle: string, newDesc: string) => void;
     tasks: TaskData[];
 }
 
 
-export default function Column({id, title, onAddTask, tasks,onDeleteTask, onCopyTask}: ColumnProps) {
+export default function Column({id, title, onAddTask, tasks,onDeleteTask, onCopyTask, onUpdateTask}: ColumnProps) {
 
     return(
         <div className="w-72 h-120 shrink-0 border border-gray-300 p-4 rounded-md bg-gray-200 flex flex-col shadow-sm">
@@ -37,6 +38,7 @@ export default function Column({id, title, onAddTask, tasks,onDeleteTask, onCopy
                         desc={task.desc}
                         onDeleteTask={onDeleteTask}
                         onCopy={() => onCopyTask(id, task)}
+                        onUpdate={(newTitle, newDesc) => onUpdateTask(id, task.id, newTitle, newDesc)}
                     />
                 ))}
             </div>

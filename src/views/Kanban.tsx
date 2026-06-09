@@ -117,6 +117,29 @@ const HandleCopyTask = (columnId: string, taskToCopy: TaskData) => {
     setColumns(updateColumns);
     };
 
+const HandleUpdateTask = (columnId: string, taskId: string, newTitle: string, newDesc: string) => {
+    const updateColumns = columns.map((column) => {
+        if(column.id === columnId){
+            return{
+                ...column,
+                tasks: column.tasks.map((task) => {
+                    if(task.id === taskId) {
+                        return{
+                            ...task,
+                            title: newTitle,
+                            desc: newDesc
+                        };
+                    }
+                    return task;
+                })
+            };
+        }
+        return column;
+    });
+    setColumns(updateColumns);
+};
+
+
     return(
         <div className="p-8">
             <div className="flex justify-between items-center pb-1 text-xl">
@@ -165,6 +188,7 @@ const HandleCopyTask = (columnId: string, taskToCopy: TaskData) => {
                         tasks={column.tasks}
                         onDeleteTask={HandleDeleteTask}
                         onCopyTask={HandleCopyTask}
+                        onUpdateTask={HandleUpdateTask}
                     >
 
                     </Column>
