@@ -1,4 +1,4 @@
-import { Route, BrowserRouter, Routes } from 'react-router-dom';
+import { Route, HashRouter, Routes, Navigate } from 'react-router-dom';
 
 import Home from './views/Home';
 import Login from './views/Login'
@@ -13,10 +13,11 @@ import DashboardLayout from './layouts/DashboardLayout';
 
 export default function App() {
   return (
-    <BrowserRouter basename='/ZePhlow'>
+    <HashRouter>
       <Routes>
         <Route element={<PublicLayout/>}>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Navigate to="/kanban" replace />} />
+          <Route path="/home" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />}/>
         </Route>
@@ -27,7 +28,7 @@ export default function App() {
 
 
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
 
 
   )
